@@ -1,0 +1,104 @@
+#
+# ~/.bashrc.aliases
+#
+
+
+
+######## Fancy ls #############
+# alias ls='lsd -AlhF --group-dirs'
+alias ls='ls -AlhF --color=auto --group-directories-first'
+
+alias ttp='git push origin master && git push github master'
+
+################################
+
+# Spawn new terminal in current directory
+alias term='pwd | termite &'
+
+# I3wm configured shortcuts
+alias i3cheatsheet='egrep ^bind ~/.config/i3/config | cut -d '\'' '\'' -f 2- | sed '\''s/ /\t/'\'' | column -ts $'\''\t'\'' | pr -2 -w 145 -t | less'
+
+# VPN dutch server
+alias vpn-nl='sudo openvpn /etc/openvpn/client/nl-free-02.protonvpn.com.udp.ovpn'
+
+alias chat='ssh x3r@a.rvstfyth.ovh -t screen -D -RR weechat weechat'
+
+alias ss='scrot -s $HOME/Screenshots/`dialog --stdout --inputbox "filename:" 0 0` && clear && echo "Image saved!"'
+
+# Test the microphone with visual output
+alias tmic='arecord -vvv -f dat /dev/null'
+
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+# Serve current diretory at localhost:8000
+alias pyser='python -m http.server'
+
+# Generate a random password
+alias npass='openssl rand -base64 20'
+
+alias pacrepo='sudo reflector -l 20 -f 10 --save /etc/pacman.d/mirrorlist'
+#alias pacman='sudo pacman'
+alias journalctl='sudo journalctl'
+alias pacu='sudo pacman -Syu --noconfirm'
+alias systemctl='sudo systemctl'
+alias se='ls /usr/bin | grep'
+alias cls='clear && ls -l --group-directories-first --color=auto'
+alias untar='tar -zxvf '
+alias ping='ping -c 5'
+alias l.='ls -d .* --color=auto'
+
+alias ymp3='youtube-dl --extract-audio --audio-format mp3 -o "/hdd/music/%(title)s-%(id)s.%(ext)s"'
+alias up='cd ..'
+alias up.='cd ../../'
+alias up..='cd ../../'
+alias up...='cd ../../../'
+
+
+# GIT stuff
+## This command deletes all local branches of a repository (but not the master!!)
+alias gbr='git branch | grep -v "master" | xargs git branch -D'
+
+
+### FUNCTIONS ###
+
+function jsonValue() {
+   KEY=$1
+   num=$2
+   awk -F"[,:}]" '{for(i=1;i<=NF;i++){if($i~/'$KEY'\042/){print $(i+1)}}}' | tr -d '"' | sed -n ${num}p
+}
+
+function timestamp() {
+    if [[ $# -eq 0 ]]; then
+	    echo $(date +%s)
+    elif [[ $# -eq 1 ]]; then
+	    echo $(date -d @"$1")
+    else
+	    echo 123
+    fi
+}
+
+alias ts='timestamp'
+
+
+function currency() {
+    if [[ $# -eq 0 ]]; then
+	echo "Invalid arguments. Specify from and to currency."
+    elif [[ $# -eq 3 ]]; then
+	query="$2_$3"
+	result=$(curl --fail --silent --show-error "https://free.currconv.com/api/v7/convert?apiKey=4ab53abb04094f277491&q=${query}&compact=ultra" | jsonValue $query 1)
+	echo "$(( ${result} * $1 ))"
+    fi
+
+}
+
+
+export QT_STYLE_OVERRIDE=gtk
+export QT_SELECT=qt5
+
+if [[ $LANG = '' ]]; then
+	export LANG=en_US.UTF-8
+fi
+
+alias gpom='git push origin master && gtoken'
+alias ttcore="cd ~/projects/tt-core"
+alias mkd="mkdir -p"
