@@ -1,4 +1,23 @@
-https://archlinux.org/feeds/packages/
-https://tweakers.net/feeds/mixed.xml
-https://feed.laravel-news.com/ Programming-PHP
+---Linux---
+https://archlinux.org/feeds/packages/ linux linux-arch
+https://archlinux.org/feeds/news/ linux linux-arch
+https://bugs.archlinux.org/feed.php?feed_type=rss2&project=0 linux linux-arch
+https://www.debian.org/News/weekly/dwn.en.rdf linux linux-debian
+https://www.linux.com/feed/ linux linux-general
+https://www.cyberciti.biz/feed/ linux linux-general
+https://www.linuxfoundation.org/feed/ linux linux-general
+http://www.linuxjournal.com/node/feed linux linux-general
+https://www.linux-magazine.com/rss/feed/lmi_full linux linux-general
+---Tech---
+https://tweakers.net/feeds/mixed.xml news news-tech
 
+---PHP---
+https://news-web.php.net/group.php?group=php.announce&format=rss php
+https://news-web.php.net/group.php?group=php.doc.nl&format=rss php
+https://feed.laravel-news.com/ php php-laravel
+https://freek.dev/feed php
+https://feeds.feedburner.com/symfony/blog php php-symfony
+
+---Python---
+http://blog.python.org/feeds/posts/default python
+https://planetpython.org/rss20.xml python
